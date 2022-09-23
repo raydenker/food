@@ -16,7 +16,7 @@ function Search({ cb = Function.prototype }) {
         type="search"
         id="Search-field"
         className=" w-4/6 border-2 border-green-900 pl-3 outline-0"
-        placeholder="Search"
+        placeholder="Search by categories name"
         onKeyDown={handleKey}
         onChange={(e) => setValue(e.target.value)}
         value={value}
