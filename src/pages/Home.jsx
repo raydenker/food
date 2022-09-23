@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 import { CategoryList } from '../components/CategoryList'
 import { Preloader } from '../components/Preloader'
 import { Search } from '../components/Search'
+import { Random } from '../components/Random'
 
 function Home() {
   const [catalog, setCatalog] = useState([])
@@ -41,6 +42,7 @@ function Home() {
   return (
     <>
       <Search cb={handleSearch} />
+      <Random/>
       {!catalog.length ? <Preloader /> : <CategoryList catalog={filtered} />}
     </>
   )
