@@ -1,25 +1,26 @@
 import { useState } from 'react'
 
-function Search({ cb = Function.prototype }) {
-  const [value, setValue] = useState('')
-  const handleKey = (e) => {
-    if (e.key === 'Enter') {
-      handleSubmit()
-    }
-  }
-  const handleSubmit = () => {
-    cb(value)
+function Search({foodQuery, setSearchParams, cb = Function.prototype }) {
+  const [value, setValue] = useState(foodQuery)
+   const handleSubmit = (e) => {
+    e.preventDefault()
+    const form = e.target
+    const query = form.search.value
+
+    const params = {}
+    if (query.length) params.search = query
+    setSearchParams(params)
   }
   return (
-    <div className="Search flex justify-between	">
+    <form className="Search flex justify-between	" onSubmit={handleSubmit}>
       <input
         type="search"
         id="Search-field"
         className=" w-4/6 border-2 border-green-900 pl-3 outline-0"
         placeholder="Search by categories name"
-        onKeyDown={handleKey}
         onChange={(e) => setValue(e.target.value)}
         value={value}
+        name="search"
       />
       <button
         onClick={() => handleSubmit()}
@@ -27,7 +28,7 @@ function Search({ cb = Function.prototype }) {
       >
         Search
       </button>
-    </div>
+    </form>
   )
 }
 export { Search }
